@@ -49,13 +49,11 @@ class List extends React.Component {
                                 const elements = [...prevState.elements, element];
                                 return {elements};
                             });
-                            console.log(this.state.elements);                     
                         });
                 } else {
                     this.setState({
                         error: true,
                     });
-                    console.log(this.state.error);
                 }  
                 break;
             }  
@@ -63,7 +61,6 @@ class List extends React.Component {
                 this.setState({
                     error: true,
                 });                
-                console.log(this.state.error);
             }
         }
     }
