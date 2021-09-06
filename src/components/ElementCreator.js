@@ -3,13 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 class ElementCreator extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.titleInput = React.createRef();
-    //     this.authorIdInput = React.createRef();
-    //     this.bodyInput = React.createRef();
-    // }
-
     constructor(props) {
         super(props);
         this.state = {

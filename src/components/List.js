@@ -1,6 +1,7 @@
 import React from 'react';
 import Element from './Element';
 import ElementCreator from './ElementCreator';
+import ElementUpdater from './ElementUpdater';
 
 class List extends React.Component {
 
@@ -77,24 +78,34 @@ class List extends React.Component {
                 this.setState({elements: elements});
             }
         });
-
-        // const elements = [...this.state.elements];
-        // const index = elements.indexOf(element);
-        // console.log(index)
-        // if (index !== -1) {
-        //     elements.splice(index, 1);
-        //     this.setState({elements: elements});
-        // }
     }
 
     updateElement = (element) => {
-
+        // fetch(`https://jsonplaceholder.typicode.com/posts/${element.id}`, {
+        //     method: 'PUT',
+        //     body: JSON.stringify({
+        //         id: element.id,
+        //         title: element.title,
+        //         body: element.body,
+        //         userId: element.userId,
+        //     }),
+        //     headers: {
+        //         'Content-type': 'application/json; charset=UTF-8',
+        //     },
+        //     })
+        //     .then((response) => response.json())
+        //     .then((json) => {
+        //         console.log(json);
+        //         console.log('updated');
+        //         }
+        //     );
     }
     
     render(){
         return (
         <>
             <ElementCreator error={this.state.error} onCreate = {this.createElement}/>
+            <ElementUpdater elements = {this.state.elements} onUpdate = {this.updateElement}/>
             {this.state.error ? <p>You have to fill all inputs, Auhtor Id must be true!</p> : null}
             <div className="list">
                 {this.state.elements.map((element) => {
