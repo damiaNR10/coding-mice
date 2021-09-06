@@ -1,0 +1,54 @@
+.App {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: $fontOpenSans;
+    margin: 0;
+    color: $colorWhite;
+    background-color: $colorBlueNavy;
+}
+
+button {
+    border: none;
+    outline: none;
+    font-family: $fontOpenSans;
+    background: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    display: block;
+    border: none;
+}
+
+h1,  h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+input {
+    border: none;
+    font-family: $fontOpenSans;
+}
+
+select {
+    font-family: $fontOpenSans;
+    background: none;
+    -moz-appearance:none; 
+    -webkit-appearance:none; 
+    appearance:none;
+}
+
+textarea {
+    border: none;
+    font-family: $fontOpenSans;
+}

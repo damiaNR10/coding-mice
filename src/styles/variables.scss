@@ -1,0 +1,17 @@
+//Colors:
+$colorLevander: #E5D9F2;
+$colorMangolia: #F5EFFF;
+$colorPurple: #A594F9;
+$colorWhite: #FFFFFF;
+
+//Fonts:
+$fontOpenSans: 'Open Sans', sans-serif;;
+
+//Font Sizes:
+@mixin fontSize16px {
+    font-size: 16px;
+
+    @media (max-width: 1024px) {
+        font-size: 14px;
+    }
+};
