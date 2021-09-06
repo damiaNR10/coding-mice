@@ -1,17 +1,36 @@
 //Colors:
-$colorLevander: #E5D9F2;
-$colorMangolia: #F5EFFF;
-$colorPurple: #A594F9;
+$colorBlack: #000000;
+$colorBlue: #3399ff;
 $colorWhite: #FFFFFF;
 
 //Fonts:
 $fontOpenSans: 'Open Sans', sans-serif;;
 
 //Font Sizes:
+@mixin fontSize12px {
+    font-size: 12px;
+};
+
+@mixin fontSize14px {
+    font-size: 14px;
+
+    @media (max-width: 1024px) {
+        font-size: 13px;
+    }
+};
+
 @mixin fontSize16px {
     font-size: 16px;
 
     @media (max-width: 1024px) {
         font-size: 14px;
+    }
+};
+
+@mixin fontSize18px {
+    font-size: 18px;
+
+    @media (max-width: 1024px) {
+        font-size: 16px;
     }
 };

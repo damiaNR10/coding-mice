@@ -1,5 +1,13 @@
 .App {
     overflow: hidden;
+    width: 1280px;
+    margin: 0 auto;
+
+    @media (max-width: 1300px) {
+        margin: 0;
+        width: 100%;
+        padding: 0 25px;
+    }
 }
 
 a {
@@ -9,8 +17,7 @@ a {
 body {
     font-family: $fontOpenSans;
     margin: 0;
-    color: $colorWhite;
-    background-color: $colorBlueNavy;
+    color: $colorBlue;
 }
 
 button {
