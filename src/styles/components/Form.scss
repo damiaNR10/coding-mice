@@ -1,0 +1,38 @@
+.form {
+    border: 1px solid $colorBlack;
+    color: $colorBlack;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+
+    &__button {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        line-height: 50px;
+        text-align: center;
+        background-color: $colorBlue;
+        color: $colorWhite;
+    }
+
+    &__label {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        height: fit-content;
+    }
+
+    &__input {
+        padding: 10px 20px;
+        border: 1px solid rgba($colorBlack, 0.5);
+        display: block;
+        width: 100%;
+
+        &--textarea {
+            resize: vertical;
+            min-height: 50px;
+        }
+    }
+}

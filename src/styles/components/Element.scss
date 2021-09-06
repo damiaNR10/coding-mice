@@ -8,6 +8,7 @@
 
     &__author {
         @include fontSize12px;
+        color: rgba($colorBlack, 0.6)
     }
 
     &__button {
@@ -25,6 +26,10 @@
         &:hover {
             border-color: $colorBlack;
         }
+    }
+
+    &__content {
+        color: $colorBlack;
     }
 
     &__menu {
