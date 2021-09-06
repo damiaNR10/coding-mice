@@ -3,7 +3,7 @@ import React from 'react';
 class Element extends React.Component {
     render(){
 
-        const {body, title, userId} = this.props;
+        const {body, title, userId, onDelete} = this.props;
 
         return (
             <article className="element">
@@ -14,7 +14,7 @@ class Element extends React.Component {
                 <div className="element__content">{body}</div>
                 <div className="element__menu">
                     <button className="element__button element__button--margin-right">Update</button>
-                    <button className="element__button">Delete</button>
+                    <button onClick = {onDelete} className="element__button">Delete</button>
                 </div>
             </article>
         );
