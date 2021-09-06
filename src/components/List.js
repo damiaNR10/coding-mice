@@ -1,12 +1,14 @@
 import React from 'react';
 import Element from './Element';
+import ElementCreator from './ElementCreator';
 
 class List extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            elements: []
+            elements: [],
+            error: false,
         };
     }
 
@@ -23,7 +25,47 @@ class List extends React.Component {
     }
 
     createElement = (element) => {
-
+        for(let i = 0; i < this.state.elements.length; i++) {
+            if(this.state.elements[i].userId == element.userId) {
+                if(element.title && element.body && element.userId) {
+                    this.setState({
+                        error: false,
+                    }); 
+                    fetch('https://jsonplaceholder.typicode.com/posts', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            id: element.id,
+                            title: element.title,
+                            body: element.body,
+                            userId: element.userId,
+                        }),
+                        headers: {
+                            'Content-type': 'application/json; charset=UTF-8',
+                        },
+                        })
+                        .then((response) => {
+                            response.json();
+                            this.setState(prevState => {
+                                const elements = [...prevState.elements, element];
+                                return {elements};
+                            });
+                            console.log(this.state.elements);                     
+                        });
+                } else {
+                    this.setState({
+                        error: true,
+                    });
+                    console.log(this.state.error);
+                }  
+                break;
+            }  
+            else {
+                this.setState({
+                    error: true,
+                });                
+                console.log(this.state.error);
+            }
+        }
     }
 
     deleteElement = (element) => {
@@ -54,6 +96,9 @@ class List extends React.Component {
     
     render(){
         return (
+        <>
+            <ElementCreator error={this.state.error} onCreate = {this.createElement}/>
+            {this.state.error ? <p>You have to fill all inputs, Auhtor Id must be true!</p> : null}
             <div className="list">
                 {this.state.elements.map((element) => {
                     return <Element 
@@ -65,6 +110,7 @@ class List extends React.Component {
                     />
                 })}
             </div>
+        </>
         );
     }
 }
