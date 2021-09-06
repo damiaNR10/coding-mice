@@ -8,3 +8,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Command needed to build project
 
 # `npm run build`
+
+2 hours have passed
