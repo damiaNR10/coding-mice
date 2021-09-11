@@ -1,7 +1,7 @@
 import React from 'react';
 import Element from './Element';
 import ElementCreator from './ElementCreator';
-import ElementUpdater from './ElementUpdater';
+// import ElementUpdater from './ElementUpdater';
 
 class List extends React.Component {
 
@@ -99,13 +99,14 @@ class List extends React.Component {
         //         console.log('updated');
         //         }
         //     );
+        console.log(element);
     }
     
     render(){
         return (
         <>
-            <ElementCreator error={this.state.error} onCreate = {this.createElement}/>
-            <ElementUpdater elements = {this.state.elements} onUpdate = {this.updateElement}/>
+            <ElementCreator onCreate = {this.createElement}/>
+            {/* <ElementUpdater elements = {this.state.elements} onUpdate = {this.updateElement}/> */}
             {this.state.error ? <p>You have to fill all inputs, Auhtor Id must be true!</p> : null}
             <div className="list">
                 {this.state.elements.map((element) => {
@@ -115,6 +116,7 @@ class List extends React.Component {
                     title = {element.title} 
                     userId = {element.userId} 
                     onDelete = {() => this.deleteElement(element)}
+                    onUpdate = {() => this.updateElement(element)}
                     />
                 })}
             </div>
