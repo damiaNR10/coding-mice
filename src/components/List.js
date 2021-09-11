@@ -106,7 +106,6 @@ class List extends React.Component {
         return (
         <>
             <ElementCreator onCreate = {this.createElement}/>
-            {/* <ElementUpdater elements = {this.state.elements} onUpdate = {this.updateElement}/> */}
             {this.state.error ? <p>You have to fill all inputs, Auhtor Id must be true!</p> : null}
             <div className="list">
                 {this.state.elements.map((element) => {
