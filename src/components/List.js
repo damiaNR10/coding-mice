@@ -81,25 +81,34 @@ class List extends React.Component {
     }
 
     updateElement = (element) => {
+        // console.log(element);
         // fetch(`https://jsonplaceholder.typicode.com/posts/${element.id}`, {
         //     method: 'PUT',
         //     body: JSON.stringify({
-        //         id: element.id,
-        //         title: element.title,
-        //         body: element.body,
-        //         userId: element.userId,
+        //       id: element.id,
+        //       title: element.title,
+        //       body: element.body,
+        //       userId: element.userId,
         //     }),
         //     headers: {
-        //         'Content-type': 'application/json; charset=UTF-8',
+        //       'Content-type': 'application/json; charset=UTF-8',
         //     },
-        //     })
+        //   })
         //     .then((response) => response.json())
         //     .then((json) => {
         //         console.log(json);
-        //         console.log('updated');
+        //         // console.log('update completed');
+        //         //console.log(this.state.elements);
+        //         const elements = [...this.state.elements];
+        //         const index = elements.indexOf(element);
+        //         elements[index] = element;
+        //         if (index !== -1) {
+        //             //elements.splice(index, 1);
+        //             this.setState({elements: elements});
         //         }
-        //     );
-        console.log(element);
+        //         console.log(this.state.elements);
+        //     });
+        // console.log(this.state.elements);
     }
     
     render(){
