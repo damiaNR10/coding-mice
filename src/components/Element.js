@@ -9,29 +9,19 @@ class Element extends React.Component {
         //     newBody: null,
         //     editable: false,
         // }
-
-        // this.handleTitleChange = this.handleTitleChange.bind(this);
-        // this.handleBodyChange = this.handleBodyChange.bind(this);
-        //this.handleUpdate = this.handleUpdate.bind(this);
     }
 
     handleTitleChange = (event) => {
-        this.setState({newTitle: event.target.value});
+        //this.setState({newTitle: event.target.value});
         //console.log(this.state.newTitle);
     }
 
     handleBodyChange = (event) => {
-        this.setState({newBody: event.target.value});
+        //this.setState({newBody: event.target.value});
         //console.log(this.state.newBody);
     }
-
-    editElement = () => {
-        // this.setState({
-        //     editable: true,
-        // });
-    }
     
-    handleUpdate = () => {
+    handleUpdate = (elementToUpdateId) => {
         //event.persist();
         // const data = {
         //     name: 'elo',
@@ -48,13 +38,15 @@ class Element extends React.Component {
         //     body: "this.state.newBody",
         //     isEditing: false,
         // }
-        this.props.onUpdate({
-            userId: 1,
-            id: 2,
-            title: 'title',
-            body: 'body',
-            isEditing: false,
-        });
+        // this.props.onUpdate({
+        //     userId: 1,
+        //     id: elementToUpdateId,
+        //     title: this.state.newTitle,
+        //     body: this.state.newBody,
+        //     isEditing: true,
+        // });
+
+        this.props.onUpdate(elementToUpdateId);
 
         //this.props.onUpdate();
 
@@ -70,7 +62,7 @@ class Element extends React.Component {
 
     render(){
 
-        const {body, isEditing, title, userId, onDelete, onUpdate} = this.props;
+        const {body, isEditing, title, userId, onDelete, onUpdate, index} = this.props;
         //const contentEditable = false;
 
         return (
@@ -78,14 +70,14 @@ class Element extends React.Component {
                 <header className="element__header">
                     {/* <h2 onChange = {this.handleTitleChange} className="element__title">{title}</h2> */}
                     {isEditing ? 
-                        <input type="text" onChange = {this.handleTitleChange} className="element__input" value={title} />
+                        <input type="text" onChange = {this.handleTitleChange} className="element__input" defaultValue={title} />
                         : 
                         <h2 className="element__title">{title}</h2>
                     }
                     <span className="element__author">Author ID: {userId}</span>
                 </header>
                 {isEditing ? 
-                    <input type="text" className="element__input" onChange = {this.handleBodyChange} value={body} />
+                    <input type="text" className="element__input" onChange = {this.handleBodyChange} defaultValue={body} />
                     :
                     <div className="element__content">{body}</div>
                 }
@@ -95,7 +87,7 @@ class Element extends React.Component {
                         <button onClick = {e => this.handleUpdate(e)} className="element__button element__button--margin-right">Save</button> 
                         : 
                         // <button onClick = {this.editElement} className="element__button element__button--margin-right">Update</button>
-                        <button onClick = {e => this.handleUpdate(e)} className="element__button element__button--margin-right">Update</button>
+                        <button onClick = {() => this.handleUpdate(index)} className="element__button element__button--margin-right">Update</button>
                     }
                     {/* <button onClick = {this.editElement} className="element__button element__button--margin-right">Update</button> */}
                     <button onClick = {onDelete} className="element__button">Delete</button>

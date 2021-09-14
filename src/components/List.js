@@ -11,7 +11,7 @@ class List extends React.Component {
             elements: [],
             error: false,
         };
-        //this.updateElement = this.updateElement.bind(this);
+        this.updateElement = this.updateElement.bind(this);
     }
 
     componentDidMount() {
@@ -84,9 +84,13 @@ class List extends React.Component {
         });
     }
 
-    updateElement(element) {
-        //console.log(element);
-        // const elements = [...this.state.elements];
+    updateElement(elementToUpdateId) {
+        //console.log(elementToUpdateId);
+        const elements = [...this.state.elements];
+        elements.map((element) => element.id === elementToUpdateId ? element.isEditing = true : element);
+        //console.log(elements);
+        this.setState({elements});
+
         // const index = elements.indexOf(element);
         // const newElement = {
         //     id: element.id,
@@ -99,9 +103,6 @@ class List extends React.Component {
         // elements[index] = newElement;
 
         // this.setState({elements});
-
-
-
 
         //console.log(this.state.elements);
 
@@ -153,6 +154,7 @@ class List extends React.Component {
             <div className="list">
                 {this.state.elements.map((element) => {
                     return <Element 
+                    index = {element.id}
                     key = {element.id} 
                     body = {element.body} 
                     title = {element.title} 
