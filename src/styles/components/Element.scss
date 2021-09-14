@@ -32,6 +32,19 @@
         color: $colorBlack;
     }
 
+    &__header {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    &__input {
+        padding: 10px 20px;
+        border: 1px solid rgba($colorBlack, 0.5);
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
     &__menu {
         display: flex;
         flex-wrap: wrap;

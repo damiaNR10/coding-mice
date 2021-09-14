@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Element from './Element';
 import ElementCreator from './ElementCreator';
 // import ElementUpdater from './ElementUpdater';
@@ -11,6 +11,7 @@ class List extends React.Component {
             elements: [],
             error: false,
         };
+        //this.updateElement = this.updateElement.bind(this);
     }
 
     componentDidMount() {
@@ -22,6 +23,9 @@ class List extends React.Component {
             .then((response) => response.json())
             .then((json) => {
                 this.setState({elements: json});
+                this.state.elements.forEach(element => {
+                    element.isEditing = false;
+                });
         });
     }
 
@@ -80,8 +84,37 @@ class List extends React.Component {
         });
     }
 
-    updateElement = (element) => {
-        // console.log(element);
+    updateElement(element) {
+        //console.log(element);
+        // const elements = [...this.state.elements];
+        // const index = elements.indexOf(element);
+        // const newElement = {
+        //     id: element.id,
+        //     title: element.title,
+        //     body: element.body,
+        //     userId: element.userId,
+        //     isEditing: false,
+        // }
+
+        // elements[index] = newElement;
+
+        // this.setState({elements});
+
+
+
+
+        //console.log(this.state.elements);
+
+
+        // this.setState({
+        //     elements: this.state.elements.map(element => (element.id === index ? newElement : element))
+        // });
+
+        // this.state.elements[element.id].isEditing = true;
+        // this.setState({
+            
+        // });
+
         // fetch(`https://jsonplaceholder.typicode.com/posts/${element.id}`, {
         //     method: 'PUT',
         //     body: JSON.stringify({
@@ -96,7 +129,7 @@ class List extends React.Component {
         //   })
         //     .then((response) => response.json())
         //     .then((json) => {
-        //         console.log(json);
+        //         //console.log(json);
         //         // console.log('update completed');
         //         //console.log(this.state.elements);
         //         const elements = [...this.state.elements];
@@ -106,12 +139,13 @@ class List extends React.Component {
         //             //elements.splice(index, 1);
         //             this.setState({elements: elements});
         //         }
-        //         console.log(this.state.elements);
+        //         //console.log(this.state.elements);
         //     });
-        // console.log(this.state.elements);
+        //console.log(this.state.elements);
     }
     
     render(){
+        
         return (
         <>
             <ElementCreator onCreate = {this.createElement}/>
@@ -123,8 +157,9 @@ class List extends React.Component {
                     body = {element.body} 
                     title = {element.title} 
                     userId = {element.userId} 
+                    isEditing = {element.isEditing}
                     onDelete = {() => this.deleteElement(element)}
-                    onUpdate = {() => this.updateElement(element)}
+                    onUpdate = {this.updateElement}
                     />
                 })}
             </div>
