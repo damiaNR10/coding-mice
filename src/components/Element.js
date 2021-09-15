@@ -4,21 +4,34 @@ class Element extends React.Component {
 
     constructor(props) {
         super(props);
-        // this.state = {
-        //     newTitle: null,
-        //     newBody: null,
-        //     editable: false,
-        // }
+        this.state = {
+            newTitle: null,
+            newBody: null,
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            newTitle: this.props.title,
+            newBody: this.props.body,
+        });
     }
 
     handleTitleChange = (event) => {
-        //this.setState({newTitle: event.target.value});
-        //console.log(this.state.newTitle);
+        this.setState({newTitle: event.target.value});
     }
 
     handleBodyChange = (event) => {
-        //this.setState({newBody: event.target.value});
-        //console.log(this.state.newBody);
+        this.setState({newBody: event.target.value});
+    }
+
+    handleEdit = (elementToEdit) => {
+        const newElement = {
+            newTitle: this.state.newTitle,
+            newBody: this.state.newBody,
+        }
+
+        this.props.onEdit(elementToEdit, newElement);
     }
     
     handleUpdate = (elementToUpdateId) => {
@@ -84,7 +97,7 @@ class Element extends React.Component {
                 {/* <div className="element__content" onChange = {this.handleBodyChange}>{body}</div> */}
                 <div className="element__menu">
                     {isEditing ? 
-                        <button onClick = {e => this.handleUpdate(e)} className="element__button element__button--margin-right">Save</button> 
+                        <button onClick = {() => this.handleEdit(index)} className="element__button element__button--margin-right">Save</button> 
                         : 
                         // <button onClick = {this.editElement} className="element__button element__button--margin-right">Update</button>
                         <button onClick = {() => this.handleUpdate(index)} className="element__button element__button--margin-right">Update</button>

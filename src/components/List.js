@@ -84,7 +84,21 @@ class List extends React.Component {
         });
     }
 
-    updateElement(elementToUpdateId) {
+    editElement = (elementToEditId, newElement) => {
+        //console.log(newElement);
+        const elements = [...this.state.elements];
+        elements.map((element) => {
+            // element.id === elementToEditId ? element.isEditing = false : element
+            if(element.id === elementToEditId) {
+                element.isEditing = false;
+                element.body = newElement.newBody;
+                element.title = newElement.newTitle;
+            }
+        });
+        this.setState({elements});
+    }
+
+    updateElement = (elementToUpdateId) => {
         //console.log(elementToUpdateId);
         const elements = [...this.state.elements];
         elements.map((element) => element.id === elementToUpdateId ? element.isEditing = true : element);
@@ -160,6 +174,7 @@ class List extends React.Component {
                     title = {element.title} 
                     userId = {element.userId} 
                     isEditing = {element.isEditing}
+                    onEdit = {this.editElement}
                     onDelete = {() => this.deleteElement(element)}
                     onUpdate = {this.updateElement}
                     />
