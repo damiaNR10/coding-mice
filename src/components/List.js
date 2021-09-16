@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Element from './Element';
 import ElementCreator from './ElementCreator';
-// import ElementUpdater from './ElementUpdater';
 
 class List extends React.Component {
 
@@ -31,7 +30,7 @@ class List extends React.Component {
 
     createElement = (element) => {
         for(let i = 0; i < this.state.elements.length; i++) {
-            if(this.state.elements[i].userId == element.userId) {
+            if(this.state.elements[i].userId === element.userId) {
                 if(element.title && element.body && element.userId) {
                     this.setState({
                         error: false,
@@ -85,78 +84,38 @@ class List extends React.Component {
     }
 
     editElement = (elementToEditId, newElement) => {
-        //console.log(newElement);
-        const elements = [...this.state.elements];
-        elements.map((element) => {
-            // element.id === elementToEditId ? element.isEditing = false : element
-            if(element.id === elementToEditId) {
-                element.isEditing = false;
-                element.body = newElement.newBody;
-                element.title = newElement.newTitle;
-            }
-        });
-        this.setState({elements});
+
+        fetch(`https://jsonplaceholder.typicode.com/posts/${elementToEditId}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                // id: elementToEditId,
+                title: newElement.newTitle,
+                body: newElement.newBody,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                //console.log(json);
+                const elements = [...this.state.elements];
+                elements.map((element) => {
+                    if(element.id === elementToEditId) {
+                        element.isEditing = false;
+                        element.body = newElement.newBody;
+                        element.title = newElement.newTitle;
+                    }
+                    return element;
+                });
+                this.setState({elements});
+            });
     }
 
     updateElement = (elementToUpdateId) => {
-        //console.log(elementToUpdateId);
         const elements = [...this.state.elements];
         elements.map((element) => element.id === elementToUpdateId ? element.isEditing = true : element);
-        //console.log(elements);
         this.setState({elements});
-
-        // const index = elements.indexOf(element);
-        // const newElement = {
-        //     id: element.id,
-        //     title: element.title,
-        //     body: element.body,
-        //     userId: element.userId,
-        //     isEditing: false,
-        // }
-
-        // elements[index] = newElement;
-
-        // this.setState({elements});
-
-        //console.log(this.state.elements);
-
-
-        // this.setState({
-        //     elements: this.state.elements.map(element => (element.id === index ? newElement : element))
-        // });
-
-        // this.state.elements[element.id].isEditing = true;
-        // this.setState({
-            
-        // });
-
-        // fetch(`https://jsonplaceholder.typicode.com/posts/${element.id}`, {
-        //     method: 'PUT',
-        //     body: JSON.stringify({
-        //       id: element.id,
-        //       title: element.title,
-        //       body: element.body,
-        //       userId: element.userId,
-        //     }),
-        //     headers: {
-        //       'Content-type': 'application/json; charset=UTF-8',
-        //     },
-        //   })
-        //     .then((response) => response.json())
-        //     .then((json) => {
-        //         //console.log(json);
-        //         // console.log('update completed');
-        //         //console.log(this.state.elements);
-        //         const elements = [...this.state.elements];
-        //         const index = elements.indexOf(element);
-        //         elements[index] = element;
-        //         if (index !== -1) {
-        //             //elements.splice(index, 1);
-        //             this.setState({elements: elements});
-        //         }
-        //         //console.log(this.state.elements);
-        //     });
-        //console.log(this.state.elements);
     }
     
     render(){

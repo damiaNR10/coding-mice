@@ -1,4 +1,3 @@
-import ElementCreator from './components/ElementCreator';
 import List from './components/List';
 
 function App() {
