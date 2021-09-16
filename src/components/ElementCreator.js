@@ -12,7 +12,6 @@ class ElementCreator extends React.Component {
         }
     }
 
-
     handleTitleChange = (event) => {
         this.setState({title: event.target.value});
     }
@@ -33,9 +32,6 @@ class ElementCreator extends React.Component {
             userId: this.state.userId,
             body: this.state.body,
         });
-        // this.state.title = null;
-        // this.state.authorId = null;
-        // this.state.body = null;
     }
 
     render(){

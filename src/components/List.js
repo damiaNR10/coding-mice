@@ -88,7 +88,6 @@ class List extends React.Component {
         fetch(`https://jsonplaceholder.typicode.com/posts/${elementToEditId}`, {
             method: 'PUT',
             body: JSON.stringify({
-                // id: elementToEditId,
                 title: newElement.newTitle,
                 body: newElement.newBody,
             }),
@@ -98,7 +97,6 @@ class List extends React.Component {
             })
             .then((response) => response.json())
             .then((json) => {
-                //console.log(json);
                 const elements = [...this.state.elements];
                 elements.map((element) => {
                     if(element.id === elementToEditId) {
